@@ -60,6 +60,7 @@ export function printBoard(board) {
       if (board[x][y]) l += "X"
       else l += " "
     }
+    // eslint-disable-next-line
     console.log(l)
   }
 }
