@@ -1,10 +1,18 @@
 # Game of Life
 
-Simple game of life implementation built with React.
+Simple game of life implementation built with React. [Play with it here.](https://tommy-game-of-life.netlify.app/)
 
 ## Running the simulation
 
 If you have a built copy of the application, opening the `index.html` file in the `build` folder should work on both Chrome and FireFox (using CTRL/CMD + O). Otherwise...
+
+### Running built copy
+
+1. Unzip the `build.zip` folder and extract contents to a known location in your computer.
+
+2. Open up a browser of your choice (preferably chrome/firefox) and open the `index.html` file in the unzipped folder by pressing `CTRL/CMD + O`.
+
+3. You should have the application loaded into your browser.
 
 ### Instructions to build
 
@@ -27,7 +35,7 @@ yarn start
 
 ```shell
 # Build
-yarn build 
+yarn build
 ```
 
 ## Simulation usage instructions
@@ -48,6 +56,5 @@ If I were to continue on from here, there would be two large goals that I would 
 
 - [Game of Life Algorithm](https://rosettacode.org/wiki/Conway%27s_Game_of_Life#JavaScript)
 - [setInterval React hook by Dan Abramov](https://overreacted.io/making-setinterval-declarative-with-react-hooks/)
-    - This was key in creating an event loop for the Game of Life algorithm without the usual headaches of intervals in React
+  - This was key in creating an event loop for the Game of Life algorithm without the usual headaches of intervals in React
 - I also looked at existing implementations for some inspiration in rendering the game board itself.
-
