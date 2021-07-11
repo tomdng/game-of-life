@@ -1,70 +1,53 @@
-# Getting Started with Create React App
+# Game of Life
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Simple game of life implementation built with React.
 
-## Available Scripts
+## Running the simulation
 
-In the project directory, you can run:
+If you have a built copy of the application, opening the `index.html` file in the `dist` folder should work on both Chrome and FireFox (using CTRL/CMD + O). Otherwise...
 
-### `yarn start`
+### Instructions to build
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. Make sure you have NodeJS (v12+) and Yarn package manager on your system.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+2. Clone the repository
 
-### `yarn test`
+3. Install dependencies with yarn
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```shell
+yarn install
+```
 
-### `yarn build`
+4. Either run locally on a development server, or build the application
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```shell
+# Dev server
+yarn start
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```shell
+# Build
+yarn build 
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Simulation usage instructions
 
-### `yarn eject`
+Due to the limited feature set, there's not much to explain here. You will be given a randomly generated grid of cells that should be sized based on how big your browser window was when you first loaded the app. Click on a cell to toggle it on/off (alive/dead), and then use the control panel on the top right to start/pause the simulation. There is an interval adjustment control so you can specify the delay between each generation in milliseconds.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Thoughts on implementation
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+It's been a while since I've created an entire and cohesive project in a span of a few short hours. I greatly underestimated the amount of work I had to do with all the features/design elements that I wanted to include, such as a re-sizeable/re-scalable grid, brush tools for rapidly creating/erasing cells, and keyboard shortcuts for the controls. There were other basic features that I really think would help the user experience, such as toggling off the random generation, clearing the board, and resetting to initial state.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+UI wise, I wanted to aim for as immersive of an experience as possible, with a UI similar to this physics sandbox called [The Powder Toy](https://powdertoy.co.uk/). The idea was to have the controls pushed to the edges of the screen as a small collection of buttons so the user could focus on the primary experience, which would be watching, creating, and destroying cells on the screen.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Most of the friction and slowdowns I encountered during this project were due to me trying to render the game in a somewhat performant matter. Using the HTML `canvas` element caused a lot of performance issues with mixed with a JavaScript framework, so I ended up re-factoring and taking an approach that would just use regular HTML `div` elements to render things out, but that took up a good portion of the time I had. Another mistake I made was with the `styled-components` CSS library that I used to render each Game of Life cell. I didn't consider the fact that whenever I had specified conditional CSS properties (ex. different colors for a living/dead cell), the library would generate a class for each cell, which was very unecessary. Thankfully the `styled-components` team had a work-around for that problem. Perhaps I should have taken a more light-weight approach that was less library/framework heavy, which could mean more repetitive work in some areas, but with the benefit of a lot less complexity.
 
-## Learn More
+If I were to continue on from here, there would be two large goals that I would work on. The first is to fix the responsiveness of the UI. Since I implemented the game's event loop as part the React event loop, there are various methods in the React API to interrupt/delay/skip the rendering part of the cycle when the user is about to perform a costly interaction (this including spamming the pause/stop button and toggling on a large amount of cells at once). The second goal, which depends on the use case, would be making sure that this project works on various devices and screen sizes. I've noticed that a lot of Game of Life implementations weren't really nice to draw cells on (and even worse on mobile devices). Solving this issue would add a lot more novelty and encourage the user to play around with the game like a true sandbox.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Thanks to these resources
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- [Game of Life Algorithm](https://rosettacode.org/wiki/Conway%27s_Game_of_Life#JavaScript)
+- [setInterval React hook by Dan Abramov](https://overreacted.io/making-setinterval-declarative-with-react-hooks/)
+    - This was key in creating an event loop for the Game of Life algorithm without the usual headaches of intervals in React
+- I also looked at existing implementations for some inspiration in rendering the game board itself.
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
