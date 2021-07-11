@@ -4,7 +4,7 @@ Simple game of life implementation built with React.
 
 ## Running the simulation
 
-If you have a built copy of the application, opening the `index.html` file in the `dist` folder should work on both Chrome and FireFox (using CTRL/CMD + O). Otherwise...
+If you have a built copy of the application, opening the `index.html` file in the `build` folder should work on both Chrome and FireFox (using CTRL/CMD + O). Otherwise...
 
 ### Instructions to build
 
